@@ -3,7 +3,7 @@
  * Functions and definitions
  *
  * @package Harmony
- * https://medium.com/@bluznierca1/understanding-php-namespaces-organising-your-code-ba2590c5e529
+ * @since 1.0.0
  */
 
 namespace Harmony;
