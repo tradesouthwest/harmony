@@ -10,7 +10,7 @@ Harmony is a theme built for readability and ease of customizing.
 - Text domain:  april
 
 # Description
-Harmony is a blogging theme made for ClassicPress. Features include fast loading templates. Upload Hero Image. Position for Image. Placement of Call to Action buttons. Choose the font family type. Demo at https://leadspilot.com/april-theme
+Harmony is a blog theme made for a comfortable reading experience. Handles font size and rendering of elements as mobile first assets. Feature include change fonts; change text alignment on page; set the width of reader coontent on pages. Demo at https://demos.tradesnet.us
 
 # Features
 Theme Options Include:
