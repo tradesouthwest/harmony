@@ -1,0 +1,637 @@
+/*
+Theme Name: Harmony
+Theme URI:    https://demos.tradesnet.us
+Author:       Tradesouthwest
+Author URI:   https://www.nilambar.net
+Description:  Harmony is a blog theme made for a comfortable reading experience. Handles font size and rendering of elements as mobile first assets. Feature include change fonts; change text alignment on page; set the width of reader coontent on pages. Demo at https://demos.tradesnet.us
+Requires PHP: 7.4
+Requires CP:  1.4
+Version:      1.0.0
+License:      GNU General Public License v2 or later
+License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:  harmony
+Tags: one-column, editor-style, featured-images, rtl-language-support, translation-ready
+*/
+/* === Table of contents 
+1.0 Noramlization
+2.0 Accessibility
+3.0 Layout 
+4.0 Navigation
+6.0 WP Defaults
+ */
+
+/* ---------------------------------------- 1.0 - @source normalize.css 
+ */ 
+/*
+ Avoid text overflows
+*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+    line-height: 1.5;
+}
+
+img {
+    border-style: none;
+    height: auto;
+    max-width: 100%;
+}
+
+a:active,
+a:hover {
+    outline: 0;
+}
+
+hr {
+    height: 0;
+    border: 1px solid #aaa;
+    width: 100%;
+    display: block;
+}
+
+hr:before,
+hr:after {
+    content: " ";
+    display: table;
+    width: 100%;
+    clear: both;
+}
+
+pre {
+    padding: 0;
+    font-size: initial;
+    color: #666;
+    white-space: pre-wrap;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+pre code,
+code {
+    font-family: monaco, "Consolas", "Lucida Console", monospace;
+    background: #efefef
+}
+
+table {
+    background-color: transparent;
+}
+
+caption {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: #777;
+}
+
+table {
+    background-color: transparent;
+}
+
+caption {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: #777;
+}
+
+th {
+    text-align: left;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+table>thead>tr>th,
+table>tbody>tr>th,
+table>tfoot>tr>th,
+table>thead>tr>td,
+table>tbody>tr>td,
+table>tfoot>tr>td {
+    padding: 4px;
+    line-height: 1.28;
+    vertical-align: middle;
+    border-top: 1px solid #ddd;
+}
+
+input[type="submit"] {
+    background: #eee;
+    box-sizing: inherit;
+    color: #464646;
+    padding: 6px 8px;
+    width: fit-content;
+    height: min-content;
+    white-space: normal;
+    text-align: center;
+    margin: 0 0 0 auto;
+    border-radius: 3px;
+    font-size: .938em;
+    background: rgba(242, 242, 242, .86);
+    box-shadow: 0 1px 2px 1px #777;
+    border: 0;
+}
+
+input[type="search"],
+input[type="email"],
+input[type="url"],
+input[type="text"] {
+    padding: 4px;
+    line-height: 1.28;
+    vertical-align: middle;
+
+}
+
+label+input,
+label+textarea,
+label+select {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #818181;
+}
+
+label {
+    display: flex;
+    margin-bottom: 8px;
+}
+
+blockquote {
+    border-left: 4px solid #ccc;
+    padding-left: .825em;
+    padding-right: .825em;
+}
+
+cite {
+    width: 100%;
+    display: block;
+    opacity: .64
+}
+
+cite:before {
+    content: "__";
+    position: relative;
+    top: -.4em;
+    display: inline-flex;
+    margin-right: .25em;
+}
+
+ol,
+ul {
+    margin: 0;
+}
+
+ol li,
+ul li {
+    margin-left: 1em;
+    margin-right: 1em;
+    line-height: 1.5
+}
+
+/* ---------------------------------------- 2.0 - Accessibility
+ */
+/* Text meant only for screen readers */
+.says,
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+    /* many screen reader and browser combinations announce broken words as they would appear visually */
+    word-wrap: normal !important;
+}
+
+.screen-reader-text:hover,
+.screen-reader-text:active,
+.screen-reader-text:focus {
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    clip: auto;
+    color: #21759b;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+    /* Above WP toolbar */
+}
+
+/* must have higher specificity than alternative color schemes inline styles */
+.site .skip-link {
+    background-color: #f1f1f1;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
+    color: #21759b;
+    display: block;
+    font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    left: -9999em;
+    outline: none;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    text-transform: none;
+    top: -9999em;
+}
+
+.logged-in .site .skip-link {
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+    font-family: "Open Sans", sans-serif;
+}
+
+.site .skip-link:focus {
+    clip: auto;
+    height: auto;
+    left: 6px;
+    top: 7px;
+    width: auto;
+    z-index: 100000;
+}
+
+/* ---------------------------------------- 3.0 Layout 
+ */
+html {
+    box-sizing: border-box;
+}
+  
+body {
+    font-size: 16px;
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+    width: min(1000px, calc(70% + 100px));
+}
+
+h1 {
+    letter-spacing: 1.68px;
+    font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+}
+  
+p {
+    line-height: 1.684;
+    font-size: max(1.124rem, 1.124vw);
+    overflow-wrap: break-word;
+}
+
+.header,
+.site-footer{
+    position: relative;
+    display: grid;
+    gap: 1em;
+    background: #fafafa;
+    padding-top: .1285em;
+}
+
+.site-title a {
+    font-size: 28px;
+    text-decoration: none;
+}
+
+/* ---------------------------------------- 4.0 - Navigation
+ */
+#nav {
+    z-index: 9999;
+    position: relative;
+}
+
+#nav a {
+    text-decoration: none;
+    display: block;
+    padding: 5px 12px;
+    margin-left: 2px;
+    margin-top: 2px;
+    font-family: inherit;
+    background: #fcfdfe;
+    height: 2.25rem;
+    line-height: 1.67;
+    min-width: 46px;
+    box-sizing: border-box;
+    font-weight: normal;
+}
+
+#nav a:hover {
+    color: #1a1d1e;
+    background: #f7f7f7;
+}
+
+#nav ul {
+    white-space: nowrap;
+    display: block;
+    list-style: none;
+    position: relative;
+    margin: 0;
+}
+
+#nav ul:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+#nav ul ul {
+    display: block;
+    margin-top: -1px;
+    opacity: 0;
+
+}
+
+#nav>ul li ul {
+    display: block;
+    opacity: 0;
+}
+
+#nav>ul li:hover ul,
+#nav>ul li:focus ul {
+    display: block;
+}
+
+#nav a:active,
+#nav a:focus {
+    background: rgba(220, 221, 222, .9);
+    color: #000066;
+}
+
+#nav ul li:hover>ul,
+#nav ul li:focus-within>ul,
+#nav ul li ul:hover,
+#nav ul.sub-menu li,
+#nav ul.sub-menu li:focus-within>ul,
+#nav ul.sub-menu li ul:hover {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+#nav ul li {
+    float:left;
+    position: inherit;
+    height: 100%;
+}
+
+/* following avoids offset of stacked menu items, adjust to taste */
+#nav ul li ul {
+    position: absolute;
+    left: 0px;
+    display: none;
+    z-index: 500;
+}
+
+/* makes the second level takes position from first */
+#nav ul li ul:after {
+    content: " ";
+    clear: both;
+    display: table-cell;
+}
+
+#nav ul li:hover ul {
+    display: block;
+}
+
+/* end adjustment for double row of menu items */
+#nav ul.sub-menu li {
+    /* left: 0;
+    margin-bottom: 0; */
+    width: 100%;
+}
+
+#nav ul.sub-menu li ul li {
+    /* debug tool 
+    border-left: 2px solid blue; */
+    margin-left: calc(.3336 * 100%);
+}
+
+#nav ul.sub-menu li a {
+    font-size: initial;
+    word-wrap: normal;
+    white-space: pre;
+    min-width: 100%;
+    width: auto;
+    max-width: 100%;
+}
+
+#nav .menu-item-has-children ul li:first-child {
+    /* debug tool 
+    border-left: 2px solid red; */
+    bottom: 0;
+    left: 0;
+}
+
+#nav .menu-item-has-children ul li ul li {
+    display: none;
+}
+
+#nav .menu-item-has-children ul li:hover ul li,
+#nav .menu-item-has-children ul.sub-menu li:focus-within>ul li {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+}
+
+#nav .menu-item-has-children ul li ul li:first-child {
+    /* debug tool
+    border-left: 2px solid green; */
+    margin-top: 0
+}
+
+/* yonder hither is thy magic */
+#nav .menu-item-has-children>a:first-child::after {
+    content: ">";
+    color: revert;
+    font-size: smaller;
+    transform: rotate(90deg);
+    display: inline-block;
+    padding: 1px;
+    width: 1em;
+    height: 1em;
+    position: relative;
+    left: 1em;
+    bottom: -10px;
+    opacity: .36
+}
+
+#nav ul ul {
+    padding: 0;
+    position: absolute;
+    top: 2em;
+}
+
+#nav ul ul li {
+    float: none;
+    position: relative;
+}
+
+#nav ul ul li a {
+    width: 100%;
+}
+
+#nav ul ul ul {
+    position: absolute;
+    left: 18%;
+    top: 2.188em;
+}
+
+#nav ul ul ul li a {
+    float: none;
+    margin-top: auto;
+    width: 100%;
+}
+
+#nav ul li.current_page_item>a,
+#nav ul li.current-menu-ancestor>a,
+#nav ul li.current-menu-item>a,
+#nav ul li.current-menu-parent>a {
+
+    font-weight: bolder;
+}
+
+/* -------------------------------- 6.0 WP Defaults
+ */
+#wp-calendar {
+    table-layout: fixed;
+}
+
+#wp-calendar td {
+    padding: 3px 9px;
+}
+
+/* Gallery
+ ---------------------------------------- */
+.gallery {
+    margin: auto;
+    /* gallery clearing*/
+    overflow: hidden;
+    width: 100%;
+}
+
+.gallery .gallery-item {
+    float: left;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.gallery.gallery-columns-1 .gallery-item {
+    width: 100%;
+}
+
+.gallery.gallery-columns-2 .gallery-item {
+    width: 50%;
+}
+
+.gallery.gallery-columns-3 figure {
+    width: 33.33%;
+}
+
+.gallery.gallery-columns-4 .gallery-item {
+    width: 25%;
+}
+
+.gallery.gallery-columns-5 figure {
+    width: 20%;
+}
+
+.gallery.gallery-columns-6 figure {
+    width: 16.66%;
+}
+
+.gallery.gallery-columns-7 figure {
+    width: 14.285%;
+}
+
+.gallery.gallery-columns-8 figure {
+    width: 12.5%;
+}
+
+.gallery.gallery-columns-9 figure {
+    width: 11.111%;
+}
+
+.gallery img {
+    box-shadow: 0px 0px 4px #999;
+    border: 1px solid white;
+    padding: 5px;
+    background: #f9f9f9;
+}
+
+.gallery img:hover {
+    background: white;
+}
+
+.gallery .gallery-caption {
+    margin-left: 0;
+}
+
+.gallery dl,
+.gallery dt {
+    margin: 0;
+}
+
+.gallery br+br {
+    display: none;
+}
+
+.gallery br {
+    clear: both
+}
+
+/* Alignments */
+.bypostauthor {
+    color: inherit;
+}
+
+.alignleft {
+    display: inline;
+    margin-right: 1.5em;
+}
+
+.alignright {
+    display: inline;
+    margin-left: 1.5em;
+}
+
+.aligncenter {
+    clear: both;
+    display: block;
+    margin: 0 auto;
+}
+
+.textcenter {
+    clear: left;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.comment-list .comment {
+    margin-top: 1em;
+}
+
+/* 4.3 - Widgets */
+.widget_tag_cloud,
+.widget_archive,
+.widget_categories {
+    max-height: 21.475em;
+    overflow-y: auto;
+    margin-bottom: 1em;
+    border-bottom: thin solid #ddd;
+}
+
+@media screen and (min-width: 800px){
+img.harmony-featured {
+    /*width: clamp(300px, 82.5%, 800px);*/
+    max-width: 100%;
+    height: auto;
+}
+.single-column{
+    max-width: 980px;
+    margin: 0 auto;
+}
+}
