@@ -18,27 +18,22 @@ get_header(); ?>
 
 <section class="single-column">
 
-	<div class="site-branding">    
-		<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" 
-			rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-	</div><!-- .site-branding -->
-
 		<main id="main" class="main main-content">
-            
-			<?php if ( have_posts() ) { ?>
-
+		
+			<?php if ( have_posts() ) 
+			{ ?>
 				<?php
 				// Start the loop.
 				while ( have_posts() ) :
 					the_post();
+					
+					if ( is_home() ) {
 
-					if ( is_home() || is_archive() ) {
-
-						get_template_part( 'excerpt' );
+						get_template_part( 'parts/excerpt' );
 						
 					} else {
 						
-						get_template_part( 'content' );
+						get_template_part( 'parts/content' );
 						
 					}
 
@@ -46,18 +41,18 @@ get_header(); ?>
 				endwhile;
 				?>
 
-			<div id="postPagination" class="post-navigation">
-				<?php
-				// Previous/next page navigation.
-				the_posts_pagination( ); 
-				?>
-			</div>
+				<div id="postPagination" class="post-navigation">
+					<?php
+					// Previous/next page navigation.
+					the_posts_pagination( ); 
+					?>
+				</div>
 
-				<?php } else { ?>
+			<?php 
+			} else { 
 				
-					<hr>
-			
-			<?php } ?>
+					get_template_part( 'parts/nocontent' );
+			} ?>
 
 		</main>
 

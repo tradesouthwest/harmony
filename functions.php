@@ -11,6 +11,7 @@ namespace Harmony;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'Direct script access denied.' );
 }
+
 define( 'HARMONY_THEME', 'harmony' );
 define( 'HARMONY_VERSION', time() );
 define( 'HARMONY_DIR', rtrim( get_template_directory(), '/' ) );
@@ -21,9 +22,9 @@ define( 'HARMONY_URL', rtrim( get_template_directory_uri(), '/' ) );
  *
  * @since 1.0.0
  */
-add_action(
-	'after_setup_theme',
-	function () {
+add_action(	'after_setup_theme', __NAMESPACE__.'\setup_theme' );
+	function setup_theme() 
+	{
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed at WordPress.org. See: https://translate.wordpress.org/projects/wp-themes/twentysixteen
@@ -49,7 +50,7 @@ add_action(
 		//add_theme_support( 'responsive-embeds' );
 
 		// Add theme support for selective refresh for widgets.
-		add_theme_support( 'customize-selective-refresh-widgets' );
+		//add_theme_support( 'customize-selective-refresh-widgets' );
 
 		// Enqueue editor styles.
 		add_editor_style();
@@ -57,13 +58,13 @@ add_action(
 		/*
 		 * Enable support for custom logo.
 		 *
-		 *  @since April 1.2
+		 *  @since Harmony 1.2
 		 */
 		add_theme_support(
 			'custom-logo',
 			array(
-				'height'      => 150,
-				'width'       => 9999,
+				'height'      => 420,
+				'width'       => 680,
 				'flex-height' => true,
 			)
 		);
@@ -72,10 +73,10 @@ add_action(
 		register_nav_menus(
 			array(
 				'primary' => __( 'Primary Menu', HARMONY_THEME ),
+				'secondary' => __( 'Very Top Menu', HARMONY_THEME ),
 			)
 		);
 	}
-);
 
 /**
  * Enqueue scripts and styles.
@@ -83,12 +84,19 @@ add_action(
  * @since 1.0.0
  */
 add_action(
-	'wp_enqueue_scripts',
-	function () {
+	'wp_enqueue_scripts', __NAMESPACE__.'\enqueue_scripts' );
+	function enqueue_scripts() 
+	{
 		wp_enqueue_style( 'harmony-style', 
 			HARMONY_URL . '/style.css', 
 			array(), 
 			HARMONY_VERSION 
+		);
+		wp_enqueue_script( 'harmony-theme-script', 
+			HARMONY_URL . '/includes/harmony-theme.js', 
+			array( 'jquery' ), 
+			HARMONY_VERSION, 
+			false
 		);
 		// rtl style
 		wp_style_add_data( 'harmony-style', 
@@ -102,7 +110,6 @@ add_action(
 			);
 		}
 	}
-);
 
 /** #A4
  * Registers a widget area.
@@ -112,13 +119,14 @@ add_action(
  * @since themename 1.0
  */
 add_action( 
-	'widgets_init',
-	function(){
+	'widgets_init', __NAMESPACE__.'\load_widgets' );
+	function load_widgets()
+	{
 	register_sidebar(
 		array(
 			'name'          => __( 'Primary Sidebar', HARMONY_THEME ),
 			'id'            => 'sidebar-primary',
-			'description'   => __( 'Appears in section', HARMONY_THEME ),
+			'description'   => __( 'Appears before the footer section', HARMONY_THEME ),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h2 class="widget-title">',
@@ -126,9 +134,26 @@ add_action(
 			)
 		);
 	} 
-);
 
+/**
+ * Returns a custom logo, linked to home 
+ * 
+ * @since 1.0.1
+ */
+add_action(
+	'harmony_render_logo', __NAMESPACE__.'\render_logo' );
+	function render_logo()
+	{
+		if( has_custom_logo() ) : 
+		$logourl = esc_url( wp_get_attachment_url( get_theme_mod( 'custom_logo' ) ) );
+
+		echo '<img src="'. esc_url( $logourl ) .'" 
+		alt="'. get_bloginfo( 'name' ) .'" class="harmony-logo"/>';
+		endif;
+	}
+
+if ( is_admin() ) : 
+	require( HARMONY_DIR . '/includes/theme-admin-menu.php' );
+endif;
 require( HARMONY_DIR . '/includes/customizer.php' );
-require( HARMONY_DIR . '/includes/theme-admin-menu.php' );
-
-//use function Harmony\Customizer\register_theme_customizer;
+require( HARMONY_DIR . '/includes/theme-functions.php' );

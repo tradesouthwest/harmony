@@ -3,10 +3,10 @@ Theme Name: Harmony
 Theme URI:    https://demos.tradesnet.us
 Author:       Tradesouthwest
 Author URI:   https://www.nilambar.net
-Description:  Harmony is a blog theme made for a comfortable reading experience. Handles font size and rendering of elements as mobile first assets. Feature include change fonts; change text alignment on page; set the width of reader coontent on pages. Demo at https://demos.tradesnet.us
+Description:  Harmony is a multi-use theme made for a comfortable reading experience. Handles font size and rendering of elements as mobile first assets. Feature include change fonts; change text alignment on page; set the width of reader content on pages. Custom logo; background colors and more. Demo at https://demos.tradesnet.us
 Requires PHP: 7.4
 Requires CP:  1.4
-Version:      1.0.0
+Version:      1.0.1
 License:      GNU General Public License v2 or later
 License URI:  http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:  harmony
@@ -190,6 +190,10 @@ ul li {
     line-height: 1.5
 }
 
+small {
+    font-size: small;
+}
+
 /* ---------------------------------------- 2.0 - Accessibility
  */
 /* Text meant only for screen readers */
@@ -266,8 +270,6 @@ html {
 body {
     font-size: 16px;
     margin: 0 auto;
-    -webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
     width: min(1000px, calc(70% + 100px));
 }
 
@@ -281,28 +283,114 @@ p {
     font-size: max(1.124rem, 1.124vw);
     overflow-wrap: break-word;
 }
+.excerpt-wrapper p {
+    line-height: 1.4888;
+}
 
 .header,
 .site-footer{
-    position: relative;
     display: grid;
     gap: 1em;
-    background: #fafafa;
-    padding-top: .1285em;
+    width: 100%;
 }
-
+.site-footer {
+    padding: 0;
+}
+.site-title {
+    margin: auto;
+}
+.site-description {
+    margin: 0;
+}
 .site-title a {
     font-size: 28px;
     text-decoration: none;
 }
+.site-branding,
+.harmony-small-sidebar {
+    padding-left:  1.444em;
+    padding-right:  1.444em;
+    padding-top: 0;
+    box-sizing: inherit;
+}
+.site-branding,
+.harmony-small-sidebar {
+    margin: 1.75em 0;
+    padding-bottom: .75em;
+    display: flex;
+    flex-direction: row;
+}
+.excerpt-wrapper {
+    padding-top: .222em;
+    padding-bottom: 0px;
+    line-height: 1.36
+}
+.harmony-heading-meta{
+    display: block;
+    padding: 0;
+    margin: -.5em 0 0;
+}
+.site-branding {
+    justify-content: space-between;
+    align-items: center;
+}
+.harmony-branding-right{
+    width: 50%;
+}
+.harmony-logo {
+    margin-top: .825em;
+}
+.post_footer-date {
+    font-size: smaller;
+    color: #626262;
+    font-style: italic;
+}
+.post_footer-date:before {
+    content: "\00BB ";
+    position: relative;
 
+}
 /* ---------------------------------------- 4.0 - Navigation
  */
+
+.post-navigation {
+    width: 100%;
+    margin: 2em 0 1em 0;
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    padding-top: 1.09em;
+    padding-bottom: 1.122em;
+}
+.post-navigation a,
+.post-navigation .current {
+    width: auto;
+    box-sizing: inherit;
+    padding: .825em 1em;
+}
+.post-navigation a:first-child{
+    margin-left: 0;
+}
+.nav-inside-top {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.nav-inside-top a{
+    text-decoration: none;
+}
 #nav {
     z-index: 9999;
     position: relative;
+    padding: .25em 0 .5em 0;
+    box-sizing: inherit;
 }
-
+.nav-inside {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1.75em;
+    list-style: none;
+}
 #nav a {
     text-decoration: none;
     display: block;
@@ -444,7 +532,7 @@ p {
 
 /* yonder hither is thy magic */
 #nav .menu-item-has-children>a:first-child::after {
-    content: ">";
+    content: "\00BB";
     color: revert;
     font-size: smaller;
     transform: rotate(90deg);
@@ -492,7 +580,25 @@ p {
 
     font-weight: bolder;
 }
-
+/* Back to top button div */ 
+.harmony-btt {
+    position: relative;
+    font-size: large;
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-end;
+    top: -3.75em;
+    padding:.5rem;
+} 
+.harmony-btt button{
+    border-radius: 50%;
+    border: 2px solid #666;
+    padding: .25em .285em .25em .285em;
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+    font-size: larger;
+}
 /* -------------------------------- 6.0 WP Defaults
  */
 #wp-calendar {
@@ -626,9 +732,8 @@ p {
 
 @media screen and (min-width: 800px){
 img.harmony-featured {
-    /*width: clamp(300px, 82.5%, 800px);*/
-    max-width: 100%;
-    height: auto;
+    width: auto;
+    max-height: calc( 240px + 12vw );
 }
 .single-column{
     max-width: 980px;

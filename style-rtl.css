@@ -128,3 +128,12 @@ select:focus,
 textarea:focus {
 	outline: 1px solid var(--wp--preset--color--secondary);
 }
+
+
+.excerpt-wrapper {
+    padding-right: .67em;
+}
+
+.post-navigation a:first-child{
+    margin-right: 0;
+}
