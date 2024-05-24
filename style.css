@@ -731,12 +731,8 @@ p {
 }
 
 @media screen and (min-width: 800px){
-img.harmony-featured {
-    width: auto;
-    max-height: calc( 240px + 12vw );
-}
-.single-column{
-    max-width: 980px;
-    margin: 0 auto;
-}
+  img.harmony-featured {
+      width: auto;
+      max-height: calc( 240px + 12vw );
+  }
 }
