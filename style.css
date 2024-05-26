@@ -13,7 +13,7 @@ Text Domain:  harmony
 Tags: one-column, editor-style, featured-images, rtl-language-support, translation-ready
 */
 /* === Table of contents 
-1.0 Noramlization
+1.0 Normalization
 2.0 Accessibility
 3.0 Layout 
 4.0 Navigation
@@ -350,6 +350,16 @@ p {
     position: relative;
 
 }
+.harmony-has-thumbnail img {
+    max-height: 150px;
+    width:auto;
+}
+.harmony-has-thumbnail {
+    display: flex;
+}
+.harmony-not-thumbnail {
+    display: none;
+}
 /* ---------------------------------------- 4.0 - Navigation
  */
 
@@ -608,7 +618,13 @@ p {
 #wp-calendar td {
     padding: 3px 9px;
 }
-
+.wp-caption {
+    max-width: 100%;
+}
+p img.alignright,
+p img.alignleft {
+    display:flex;
+}
 /* Gallery
  ---------------------------------------- */
 .gallery {
@@ -720,19 +736,18 @@ p {
     margin-top: 1em;
 }
 
-/* 4.3 - Widgets */
+/* Widgets */
 .widget_tag_cloud,
 .widget_archive,
 .widget_categories {
     max-height: 21.475em;
     overflow-y: auto;
     margin-bottom: 1em;
-    border-bottom: thin solid #ddd;
 }
 
 @media screen and (min-width: 800px){
-  img.harmony-featured {
-      width: auto;
-      max-height: calc( 240px + 12vw );
-  }
+    img.harmony-featured {
+        width: auto;
+        max-height: calc( 240px + 12vw );
+    }
 }

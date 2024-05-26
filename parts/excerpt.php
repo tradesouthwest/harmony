@@ -12,15 +12,19 @@
     <div class="excerpt-wrapper">
         
         <header class="content-title">
-        
-            <?php 
-            the_title(
-                sprintf( '<h2 class="article-title h4"><a href="%s" rel="bookmark">', 
-                esc_attr( esc_url( get_permalink() ) ) 
-                ),
-                '</a></h2>'
-            ); ?>
+            <div class="mayhave-thumbnail">
 
+                <?php 
+                the_title(
+                    sprintf( '<h2 class="article-title h4"><a href="%s" rel="bookmark">', 
+                    esc_attr( esc_url( get_permalink() ) ) 
+                    ),
+                    '</a></h2>'
+                ); ?>
+                <?php 
+                do_action( 'harmony_thumbnail' ); ?>
+
+            </div>
         </header>
             <div class="entry-content">
                 
@@ -30,14 +34,13 @@
 
             </div><!-- .entry-content -->
                 <div class="after-entry">
-                <div class="harmony-heading-meta">
-                    <p><small><strong><?php esc_html_e('By: ', 'harmony'); ?></strong> <em><?php the_author(); ?></em>
-                    | <?php esc_html_e('Categorized as: ', 'harmony'); ?> <em><?php the_category( ' &bull; ' ); ?></em>
-                    | <?php esc_html_e('Keys: ', 'harmony'); ?><em> <?php the_tags( ' ' ); ?></em>
-                    | <?php esc_html_e('Added on: ', 'harmony'); ?> <em><?php the_date(); ?></em>
-                    </small></p>
-                </div>
-                    
+                    <div class="harmony-heading-meta">
+                        <p class="excerpt-meta"><small><strong class="by"><?php esc_html_e('By: ', 'harmony'); ?></strong> <em class="author"><?php the_author(); ?></em>
+                        <span class="cat-as"> | <?php esc_html_e('Categorized as: ', 'harmony'); ?> <em><?php the_category( ' &bull; ' ); ?></em></span>
+                        <span class="key-as"> | <?php esc_html_e('Keys: ', 'harmony'); ?><em> <?php the_tags( ' ' ); ?></em></span>
+                        <span class="date-as"> | <?php esc_html_e('Added on: ', 'harmony'); ?> <em><?php the_date(); ?></em></span>
+                        </small></p>
+                    </div>    
                 </div>
     </div>
 </article><!-- #post-## -->

@@ -12,8 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'Direct script access denied.' );
 }
 
+/* /////////////////////// Update Version Here. //////////////////// */
+define( 'HARMONY_VERSION', '1.0.1' );
 define( 'HARMONY_THEME', 'harmony' );
-define( 'HARMONY_VERSION', time() );
 define( 'HARMONY_DIR', rtrim( get_template_directory(), '/' ) );
 define( 'HARMONY_URL', rtrim( get_template_directory_uri(), '/' ) );
 
@@ -152,8 +153,33 @@ add_action(
 		endif;
 	}
 
+/**
+ * Return post thumbnail on excerpts
+ * 
+ * @since 1.0.1
+ * @return Boolean
+ */
+add_action( 'harmony_thumbnail', __NAMESPACE__.'\render_thumbnail' );
+	function render_thumbnail()
+	{
+		// If there are images
+		if ( has_post_thumbnail() ) {
+			echo '<figure class="harmony-has-thumbnail">';
+				the_post_thumbnail();
+			echo '</figure>';
+		} else {
+			echo '<span class="harmony-not-thumbnail"></span>';
+		}
+	}
+
+/**
+ * Include helper files
+ * 
+ * @since 1.0.0
+ */
+require(     HARMONY_DIR . '/includes/customizer.php' ); 
+
 if ( is_admin() ) : 
 	require( HARMONY_DIR . '/includes/theme-admin-menu.php' );
 endif;
-require( HARMONY_DIR . '/includes/customizer.php' );
-require( HARMONY_DIR . '/includes/theme-functions.php' );
+
