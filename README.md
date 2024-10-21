@@ -8,7 +8,6 @@ Harmony is a theme built for readability and ease of customizing.
 - Tags:         two-columns, translation-ready, featured-images, blog, e-commerce,  news, custom-menu, custom-background, custom-logo, custom-header
 - License:      GPL 3 (see LICENSE)
 - Text domain:  april
-- Demo:         https://demos.tradesnet.us/
 
 # Description
 Harmony is a blogging theme made for ClassicPress. Features include fast loading templates. Upload Hero Image. Position for Image. Placement of Call to Action buttons. Choose the font family type. Demo at https://leadspilot.com/april-theme
